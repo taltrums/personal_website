@@ -49,9 +49,8 @@
         <div class="container">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {% for project in projects.all %}
-
-            
             <div class="col">
+              <a href="{% url 'detail' project.id %}">
               <div class="card shadow-sm">
                 <img class="card-img-top" src=" {{ project.image.url }}">
 
