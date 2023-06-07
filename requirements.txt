@@ -19,7 +19,7 @@ distro-info===1.1build1
 Django==4.2.2
 duplicity==0.8.21
 fasteners==0.14.1
-future==0.18.2
+future==0.18.3
 gyp==0.1
 httplib2==0.20.2
 idna==3.3
