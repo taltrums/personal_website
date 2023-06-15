@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for taltrums on 2023-06-15T15:04:34+05:30
+# fly.toml app configuration file generated for taltrums on 2023-06-15T15:24:25+05:30
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = "taltrums"
-primary_region = "ams"
+primary_region = "sin"
 console_command = "/code/manage.py shell"
 
 [deploy]
