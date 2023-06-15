@@ -1,4 +1,4 @@
-ARG PYTHON_VERSION=3.8-slim-buster
+ARG PYTHON_VERSION=3.10-slim-buster
 
 FROM python:${PYTHON_VERSION}
 
@@ -16,7 +16,7 @@ RUN set -ex && \
     rm -rf /root/.cache/
 COPY . /code
 
-ENV SECRET_KEY "Pqm66a8UZzV5XGIa8OssvSD41SQRBSUKqReMLjWA0AnA2ZKrxu"
+ENV SECRET_KEY "znfifur6VOLTLhTF1ENbwtwZKQ6RIgTgnTBuvmJUyZfBsZBS9G"
 RUN python manage.py collectstatic --noinput
 
 EXPOSE 8000
