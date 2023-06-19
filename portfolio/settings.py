@@ -14,6 +14,7 @@ from dotenv import load_dotenv
 from pathlib import Path
 import os
 
+
 load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL")
@@ -29,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -44,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
-    'ckeditor'
+    'ckeditor',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -129,8 +131,37 @@ STATICFILES_DIRS = [
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "mediafiles"
+# MEDIA_URL = "/media/"
+# MEDIA_ROOT = BASE_DIR / "mediafiles"
+
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+
+AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+
+AWS_S3_ENDPOINT_URL = os.getenv("AWS_S3_ENDPOINT_URL")
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+AWS_DEFAULT_ACL = 'public-read'
+
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+
+AWS_LOCATION = 'media'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+
+MEDIA_URL =  'https://%s/%s/' % (AWS_S3_ENDPOINT_URL,AWS_LOCATION)
+
 
 
 CSRF_TRUSTED_ORIGINS = ['https://taltrums.fly.dev/']
